@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD 20)
 # include(${_project_options_SOURCE_DIR}/Index.cmake)
 include(../src/Index.cmake)
 
+include(cmake/CPM.cmake)
+
 run_vcpkg()
 
 project(
@@ -56,7 +58,7 @@ project_options(
   ENABLE_PCH
   PCH_HEADERS
   ${PCH_HEADERS}
-  ENABLE_DOXYGEN
+  # ENABLE_DOXYGEN
   ENABLE_INTERPROCEDURAL_OPTIMIZATION
   ENABLE_NATIVE_OPTIMIZATION
   # ENABLE_USER_LINKER
@@ -68,8 +70,21 @@ project_options(
   # ENABLE_SANITIZER_THREAD
   # ENABLE_SANITIZER_MEMORY
   # CLANG_WARNINGS "-Weverything"
+  CPPCHECK_OPTIONS
+  --enable=style,performance,warning,portability
+  --inline-suppr
+  # We cannot act on a bug/missing feature of cppcheck
+  --suppress=cppcheckError
+  --suppress=internalAstError
+  # if a file does not have an internalAstError, we get an unmatchedSuppression error
+  --suppress=unmatchedSuppression
+  --suppress=passedByValue
+  --suppress=syntaxError
+  --inconclusive
 )
 # NOTE: project_options and project_warnings are defined inside project_options
+
+add_subdirectory(libs)
 
 # Executable
 add_executable(main ./src/main/main.cpp)
@@ -87,6 +102,7 @@ target_link_system_libraries(
   PRIVATE
   fmt::fmt
   Eigen3::Eigen)
+target_link_system_libraries(main PRIVATE MyLibExample)
 
 ## tests
 enable_testing()
