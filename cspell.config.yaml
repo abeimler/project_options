@@ -10,8 +10,6 @@ language: en, en-GB
 allowCompoundWords: true
 enableGlobDot: true
 words:
-  - awalsh
-  - pkgs
   - aarch
   - aminya
   - Amnet
@@ -20,6 +18,7 @@ words:
   - ARGN
   - armv
   - asan
+  - awalsh
   - buildtools
   - ccache
   - ccmake
@@ -39,14 +38,18 @@ words:
   - ctest
   - Cuda
   - DCMAKE
+  - DCROSS
   - DDEFAULT_TRIPLET
   - deps
   - DOPT
+  - DTARGET
+  - DVCPKG
   - dyld
   - dylib
   - eabi
   - egor-tensin
   - Eigen
+  - elif
   - emcc
   - emcmake
   - emscripten
@@ -72,9 +75,11 @@ words:
   - LPWSTR
   - lrdimon
   - lstdc
+  - mathjax
   - mcpu
   - mdfile
   - mfpu
+  - moderncmakedomain
   - msbuild
   - msvc
   - msys
@@ -87,13 +92,20 @@ words:
   - myprogram
   - myproj
   - myproject
+  - mypy
   - mythirdpartylib
+  - nojekyll
+  - nosys
   - nothrow
   - nvcc
   - Opencppcoverage
   - pargs
+  - pkgs
   - pnpm
+  - POSIX
   - pwsh
+  - qthelp
+  - riscv
   - rmrf
   - rpath
   - rtti
@@ -103,9 +115,11 @@ words:
   - suppr
   - SYSROOT
   - tecolicom
+  - texi
   - TOLOWER
   - TOUPPER
   - ubsan
+  - undoc
   - vcpkg
   - vcvarsall
   - visualc
@@ -131,5 +145,6 @@ words:
   - Wsign
   - Wunused
   - Wuseless
+  - Xcompiler
   - xcrun
   - Yahyaabadi
