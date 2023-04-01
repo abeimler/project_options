@@ -24,9 +24,19 @@ jobs:
           - platform: x64
             cross_cc: x86_64-w64-mingw32-gcc
             cross_cxx: x86_64-w64-mingw32-g++
+            build_task: minimal:build.mingw
           - platform: x86
             cross_cc: i686-w64-mingw32-gcc
             cross_cxx: i686-w64-mingw32-g++
+            build_task: minimal:build.mingw
+          - platform: x64
+            cross_cc: x86_64-w64-mingw32-gcc
+            cross_cxx: x86_64-w64-mingw32-g++
+            build_task: build.mingw.from-triplet
+          - platform: x86
+            cross_cc: i686-w64-mingw32-gcc
+            cross_cxx: i686-w64-mingw32-g++
+            build_task: build.mingw.from-triplet
     steps:
       - uses: actions/checkout@v3
         with:
@@ -63,9 +73,9 @@ jobs:
         with:
           platform: ${{ matrix.platform }}
 
-      - name: Build (Minimal)
+      - name: Build
         run: |
-          task minimal:build.mingw
+          task ${{ matrix.build_task }}
         env:
           CMAKE_GENERATOR: ${{ matrix.cmake_generator }}
           CROSS_CC: ${{ matrix.cross_cc }}
